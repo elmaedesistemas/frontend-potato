@@ -1,0 +1,2 @@
+# frontend-potato
+SPA Angular
