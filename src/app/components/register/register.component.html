@@ -1,6 +1,14 @@
 <div class="col-md-12 mt-3">
     <h1>{{ page_title }}</h1>
-    <p>Sign Up for create new posts!</p>
+    <p *ngIf="status != 'success'">Sign Up for create new posts!</p>
+
+    <div class="alert alert-success col-md-8" *ngIf="status == 'success'">
+        Register Successfully, <a [routerLink]="['/login']">Login here!</a>
+    </div>
+
+    <div class="alert alert-danger col-md-8" *ngIf="status == 'error'">
+        Register Failed, try again later. :(
+    </div>
 
     <!--FORM OF REGISTER-->
     <form class="col-md-5 ml-0 pl-0" #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)">
