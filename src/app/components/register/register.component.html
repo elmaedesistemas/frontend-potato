@@ -1,2 +1,37 @@
-<h1>{{ page_title }}</h1>
-<p>register works!</p>
+<div class="col-md-12 mt-3">
+    <h1>{{ page_title }}</h1>
+    <p>Sign Up for create new posts!</p>
+
+    <!--FORM OF REGISTER-->
+    <form class="col-md-5 ml-0 pl-0" #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" name="name" class="form-control" placeholder="Name" 
+              #name="ngModel" [(ngModel)]="user.name" required pattern="[a-zA-Z ]+"/>
+              <small *ngIf="!name.valid && name.touched" class="invalid-feedback d-block"> Invalid Name</small>
+      </div>
+
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" name="username" class="form-control" placeholder="username"
+              #username="ngModel" [(ngModel)]="user.username" required />
+              <small *ngIf="!username.valid && username.touched" class="invalid-feedback d-block"> Write something</small>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="text" name="email" class="form-control" placeholder="Email"
+              #email="ngModel" [(ngModel)]="user.email" required />
+              <small *ngIf="!email.valid && email.touched" class="invalid-feedback d-block" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"> Invalid Email</small>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="text" name="password" class="form-control" placeholder="Password"
+              #password="ngModel" [(ngModel)]="user.password" required />
+              <small *ngIf="!password.valid && password.touched" class="invalid-feedback d-block"> Invalid Password, write something</small>
+      </div>
+      
+        <input type="submit" name="register" value="Register" class="btn btn-primary" [disabled]="registerForm.invalid" />
+    </form>
+</div>
