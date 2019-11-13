@@ -26,4 +26,18 @@ export class UserServiceProvider {
 
         return this._http.post(this.url+'/register', params, {headers: headers})
     }
+
+    login(user, getToken = null): Observable<any> {
+
+        if(getToken != null){
+            user.getToken = 'true'
+        }
+
+        const json = JSON.stringify(user)
+        const params = 'json='+json
+
+        const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
+
+        return this._http.post(this.url+'login', params, {headers: headers})
+    }
 }
